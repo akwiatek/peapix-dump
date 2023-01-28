@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "downlevelIteration": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "newLine": "lf",
+        "noEmitOnError": true,
+        "noErrorTruncation": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "removeComments": true,
+        "useDefineForClassFields": true,
+        "skipLibCheck": true,
+        "baseUrl": ".",
+        "strict": true,
+        "module": "es2022",
+        "target": "es2022"
+    }
+}

@@ -1,0 +1,168 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "tsconfig.json",
+        "sourceType": "module"
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:promise/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/strict",
+        "prettier"
+    ],
+    "settings": {
+        "import/resolver": {
+            "typescript": {
+                "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+                "project": "tsconfig.json"
+            }
+        }
+    },
+    // Any rule set to "warn" is only temporarily disabled.
+    // Feel free to re-enable any of those and address it.
+    "rules": {
+        // People, e.g. Java specialists, usually expect members to have unique values within the same enum.
+        // Duplicate values can lead to bugs that are hard to track down.
+        "@typescript-eslint/no-duplicate-enum-values": "error",
+        // Using the any type defeats the purpose of using TypeScript. When any is used, all compiler type checks around that value are ignored.
+        "@typescript-eslint/no-explicit-any": "error",
+        // There are security and performance implications involved with using eval().
+        "@typescript-eslint/no-implied-eval": "error",
+        // Flags promises, i.e. async code, treated as sync code.
+        // This situation can often arise due to a misunderstanding of the way async functions are handled.
+        "@typescript-eslint/no-misused-promises": "error",
+        // The non-null assertion clutters code because the nullish coalescing operator handles null and undefined.
+        "@typescript-eslint/no-non-null-asserted-nullish-coalescing": "error",
+        // Using a non-null assertion after an optional chain expression most certainly introduces an issue,
+        // i.e. an undefined value gets assigned to a not-undefined type.
+        "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+        "@typescript-eslint/no-non-null-assertion": "error",
+        // Union type may have a lot of parts. It's easy to forget to consider all cases in switch.
+        "@typescript-eslint/switch-exhaustiveness-check": "error",
+        // Recommendations from TypeScript Handbook
+        // https://www.typescriptlang.org/docs/handbook/variable-declarations.html#let-vs-const
+        "prefer-const": "error",
+        // Imported from JSCS
+        "one-var": ["error", "consecutive"],
+        // Imported from JSHint
+        "camelcase": "error",
+        "curly": "error",
+        "dot-notation": "error",
+        "eqeqeq": "error",
+        "new-cap": [
+            "error",
+            {
+                // JavaScript decorators provided by Angular, e.g. @NgModule, @Injectable,
+                // do not follow this recommendation.
+                "capIsNew": false
+            }
+        ],
+        "no-bitwise": "error",
+        "no-caller": "error",
+        "no-new": "error",
+        // The new Promise constructor accepts a single argument, called an executor. The return value of the executor is ignored.
+        // Returning a value from an executor function is a possible error because the returned value cannot be used and it doesn’t affect the promise in any way.
+        "no-promise-executor-return": "error",
+        // Objects can have properties that shadow the builtins on Object.prototype, potentially causing denial-of-service security vulnerabilities.
+        "no-prototype-builtins": "error",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "error",
+        "no-invalid-this": "off",
+        "@typescript-eslint/no-invalid-this": "error",
+        // Developers with a strong backend background, e.g. Java specialists, tend to confuse how var works.
+        // https://www.typescriptlang.org/docs/handbook/variable-declarations.html#variable-capturing-quirks
+        "no-var": "error",
+        // It is often a programmer error, such as forgetting to add parenthesis to call a function that returns a Promise.
+        "@typescript-eslint/await-thenable": "error",
+        "promise/no-promise-in-callback": "error",
+        // As explained by @JamesHenry, the creator of typescript-eslint:
+        // 1. Increased readability.
+        // You don't have to rely on intellisense to figure out what a function is or does. This makes it easier to do reviews without an IDE.
+        // 2. It allows you to catch problems sooner.
+        // By default TypeScript in the IDE does not check files you don't have open.
+        // If you change the exports of file A, you don't find out that file B is broken until you manually run your build.
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "error",
+        // The default Object .toString() returns "[object Object]", so this rule requires stringified objects define a more useful .toString() method.
+        "@typescript-eslint/no-base-to-string": "error",
+        // Writing a function within a loop tends to result in errors due to the way the function creates a closure around the loop.
+        "no-loop-func": "off",
+        "@typescript-eslint/no-loop-func": "error",
+        // Discourages a type assertion in Array.reduce() which often introduces a bug.
+        "@typescript-eslint/prefer-reduce-type-parameter": "error",
+        // Array elements get coerced to strings and are sorted alphabetically, regardless of their type.
+        // When sorting numbers, this results in the classic "10 before 2" order bug.
+        "@typescript-eslint/require-array-sort-compare": [
+            "error",
+            {
+                "ignoreStringArrays": true
+            }
+        ],
+        // Produces clearer stack trace information as well as consistent error handling, namely
+        // returned promises will not be caught in an async function try/catch.
+        "no-return-await": "off",
+        "@typescript-eslint/return-await": "error",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        // Does not recognise sync functions that return void. We use those heavily in controllers to save state.
+        "promise/always-return": "off",
+        // It suggests more verbose code
+        "@typescript-eslint/restrict-plus-operands": "off",
+        // An unused expression which has no effect on the state of the program indicates a logic error.
+        // For example, n + 1; is not a syntax error, but it might be a typing mistake where a programmer meant an assignment statement n += 1; instead.
+        "no-unused-expressions": "off",
+        "@typescript-eslint/no-unused-expressions": "error",
+        // Variables that are declared and not used anywhere in the code are most likely an error due to incomplete refactoring.
+        // Such variables can lead to confusion by readers.
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-var-requires": "error",
+        // Declaration merging between classes and interfaces is unsafe because The TypeScript compiler doesn't check whether properties are initialized.
+        "@typescript-eslint/no-unsafe-declaration-merging": "error",
+        // TODO unsafe means any. These rules will be enabled once the project gets migrated to TypeScript.
+        "@typescript-eslint/no-unsafe-argument": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        // TODO Disobeyed rules; will be addressed later
+        "promise/catch-or-return": [
+            "warn",
+            {
+                // Promise.finally() is used in controllers merely for resetting flags, e.g. vm.isLoading.
+                // It is unlikely finally() will throw an error, thus it doesn't have to be followed by catch().
+                "terminationMethod": ["catch", "finally"],
+                "allowFinally": true
+            }
+        ],
+        "promise/no-nesting": "warn",
+        // An unnecessary condition frequently exposes a hidden assumption where an inaccurate type has been used.
+        // The assumption should be explicitly documented by correcting the type.
+        "@typescript-eslint/no-unnecessary-condition": "warn",
+        "@typescript-eslint/no-floating-promises": [
+            "warn",
+            {
+                "ignoreVoid": false
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "rules": {
+                // The rule does not recognise type assertion functions yet.
+                "no-undef": "off"
+            }
+        },
+        {
+            "files": ["*.routes.ts"],
+            "rules": {
+                "promise/catch-or-return": "error"
+            }
+        }
+    ]
+}

@@ -4,7 +4,7 @@
     "author": "Adam Kwiatek, kwiatek.adam@poczta.fm",
     "type": "module",
     "dependencies": {
-        "@types/node": "18.11.18",
+        "@types/node": "20.3.3",
         "@typescript-eslint/eslint-plugin": "5.60.1",
         "@typescript-eslint/parser": "5.49.0",
         "eslint": "8.44.0",
